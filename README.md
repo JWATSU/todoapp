@@ -1,4 +1,4 @@
-# todoapp
+# An application for managing your to-tos. Spring Boot backend with a React frontend
 
 TODO for my Todos project:
 - Add login functionality with Spring Security
