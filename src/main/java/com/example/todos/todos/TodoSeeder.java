@@ -1,4 +1,4 @@
-package com.example.azurespringboottutorial.todos;
+package com.example.todos.todos;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
-package com.example.azurespringboottutorial.todos;
+package com.example.todos.todos;
 
-import com.example.azurespringboottutorial.exceptions.TodoNotFoundException;
+import com.example.todos.exceptions.TodoNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

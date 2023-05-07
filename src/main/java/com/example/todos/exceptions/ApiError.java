@@ -1,4 +1,4 @@
-package com.example.azurespringboottutorial.exceptions;
+package com.example.todos.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

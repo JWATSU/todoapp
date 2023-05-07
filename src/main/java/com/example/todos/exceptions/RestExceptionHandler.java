@@ -1,4 +1,4 @@
-package com.example.azurespringboottutorial.exceptions;
+package com.example.todos.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

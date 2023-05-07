@@ -11,8 +11,8 @@
     <groupId>com.example</groupId>
     <artifactId>todo-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>azure-spring-boot-tutorial</name>
-    <description>azure-spring-boot-tutorial</description>
+    <name>amazing-todo-app</name>
+    <description>An amazing app for managing todo items</description>
     <properties>
         <java.version>17</java.version>
     </properties>

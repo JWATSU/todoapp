@@ -1,13 +1,13 @@
-package com.example.azurespringboottutorial;
+package com.example.todos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AzureSpringBootTutorialApplication {
+public class MyTodoApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(AzureSpringBootTutorialApplication.class, args);
+        SpringApplication.run(MyTodoApp.class, args);
     }
 
 }

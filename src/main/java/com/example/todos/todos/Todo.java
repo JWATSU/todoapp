@@ -1,4 +1,4 @@
-package com.example.azurespringboottutorial.todos;
+package com.example.todos.todos;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

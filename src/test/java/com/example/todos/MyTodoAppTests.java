@@ -1,11 +1,11 @@
-package com.example.azurespringboottutorial;
+package com.example.todos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-class AzureSpringBootTutorialApplicationTests {
+class MyTodoAppTests {
 
     @Test
     void contextLoads() {

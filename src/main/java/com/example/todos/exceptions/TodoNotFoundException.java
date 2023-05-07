@@ -1,4 +1,4 @@
-package com.example.azurespringboottutorial.exceptions;
+package com.example.todos.exceptions;
 
 public class TodoNotFoundException extends RuntimeException {
 
