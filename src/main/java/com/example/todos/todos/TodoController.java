@@ -1,12 +1,14 @@
 package com.example.todos.todos;
 
 import com.example.todos.exceptions.TodoNotFoundException;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/todos/secure")
 public class TodoController {
 
     private final TodoService todoService;
@@ -15,30 +17,39 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @PostMapping("/todos")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Todo createTodo(@Valid @RequestBody Todo todo) {
+    public Todo createTodo(
+            JwtAuthenticationToken jwtAuthenticationToken,
+            @Valid @RequestBody Todo todo) {
+        String userEmail = jwtAuthenticationToken.getToken().getSubject();
         return todoService.save(todo);
     }
 
-    @PutMapping("/todos/{id}")
-    public Todo updateTodo(@PathVariable Long id, @Valid @RequestBody Todo updatedTodo) {
+    @PutMapping("/{id}")
+    public Todo updateTodo(
+            JwtAuthenticationToken jwtAuthenticationToken,
+            @PathVariable Long id, @Valid @RequestBody Todo updatedTodo) {
         Todo todo = todoService.findById(id).orElseThrow(() -> new TodoNotFoundException(id));
         return todoService.update(todo, updatedTodo);
     }
 
-    @GetMapping("/todos")
-    public Iterable<Todo> getTodos() {
+    @GetMapping("")
+    public Iterable<Todo> getTodos(JwtAuthenticationToken jwtAuthenticationToken) {
         return todoService.findAll();
     }
 
-    @GetMapping("/todos/{id}")
-    public Todo getTodoById(@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public Todo getTodoById(
+            JwtAuthenticationToken jwtAuthenticationToken,
+            @PathVariable Long id) {
         return todoService.findById(id).orElseThrow(() -> new TodoNotFoundException(id));
     }
 
-    @DeleteMapping("/todos/{id}")
-    public void deleteTodoById(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteTodoById(
+            JwtAuthenticationToken jwtAuthenticationToken,
+            @PathVariable Long id) {
         Todo todo = todoService.findById(id).orElseThrow(() -> new TodoNotFoundException(id));
         todoService.delete(todo);
     }
