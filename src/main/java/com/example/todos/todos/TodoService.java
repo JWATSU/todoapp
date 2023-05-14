@@ -25,8 +25,8 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 
-    public Iterable<Todo> findAll() {
-        return todoRepository.findAll();
+    public Iterable<Todo> findAll(String email) {
+        return todoRepository.findTodosByUserEmail(email);
     }
 
     public Optional<Todo> findById(Long id) {

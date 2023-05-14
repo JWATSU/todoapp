@@ -23,6 +23,8 @@ public class Todo {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    private String userEmail;
+
     public Long getId() {
         return id;
     }
@@ -56,6 +58,14 @@ public class Todo {
     }
 
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     @Override
     public String toString() {
         return "Todo{" +
@@ -64,6 +74,7 @@ public class Todo {
                 ", done=" + done +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", userEmail='" + userEmail + '\'' +
                 '}';
     }
 }

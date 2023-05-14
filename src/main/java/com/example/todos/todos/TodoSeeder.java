@@ -33,6 +33,7 @@ public class TodoSeeder implements CommandLineRunner {
                         todo.setUpdatedAt(LocalDateTime.now());
                         todo.setDescription(descriptions[index]);
                         todo.setDone(done);
+                        todo.setUserEmail("admin@outlook.com");
                         todos.add(todo);
                     });
 

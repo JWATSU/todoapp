@@ -23,6 +23,7 @@ public class TodoController {
             JwtAuthenticationToken jwtAuthenticationToken,
             @Valid @RequestBody Todo todo) {
         String userEmail = jwtAuthenticationToken.getToken().getSubject();
+        todo.setUserEmail(userEmail);
         return todoService.save(todo);
     }
 
@@ -36,7 +37,9 @@ public class TodoController {
 
     @GetMapping("")
     public Iterable<Todo> getTodos(JwtAuthenticationToken jwtAuthenticationToken) {
-        return todoService.findAll();
+        String userEmail = jwtAuthenticationToken.getToken().getSubject();
+
+        return todoService.findAll(userEmail);
     }
 
     @GetMapping("/{id}")
