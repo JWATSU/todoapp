@@ -1,11 +1,11 @@
 package com.example.todos.todos;
 
 import com.example.todos.exceptions.TodoNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/todos/secure")
@@ -24,7 +24,7 @@ public class TodoController {
             @Valid @RequestBody Todo todo) {
         String userEmail = jwtAuthenticationToken.getToken().getSubject();
         todo.setUserEmail(userEmail);
-        return todoService.save(todo);
+        return todoService.create(todo);
     }
 
     @PutMapping("/{id}")

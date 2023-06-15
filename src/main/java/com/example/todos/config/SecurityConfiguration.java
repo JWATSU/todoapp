@@ -3,7 +3,9 @@ package com.example.todos.config;
 import com.okta.spring.boot.oauth.Okta;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.accept.ContentNegotiationStrategy;
 import org.springframework.web.accept.HeaderContentNegotiationStrategy;
@@ -14,19 +16,13 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        // Disable Cross Site Request Forgery
-        http.csrf().disable();
-
         // Protect endpoints at /api/<type>/secure
-        http.authorizeRequests(configurer ->
-                        configurer
-                                .antMatchers("/api/v1/todos/secure/**")
-                                .authenticated())
-                .oauth2ResourceServer()
-                .jwt();
+        http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/todos/secure/**").authenticated())
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(Customizer.withDefaults()));
 
-        // Add CORS filters
-        http.cors();
 
         // Add content negotiation strategy
         http.setSharedObject(ContentNegotiationStrategy.class,
