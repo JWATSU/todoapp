@@ -1,0 +1,56 @@
+.nav-color {
+  background-color: rgb(169 195 235);
+}
+
+.card-body > div {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.card-body > form > div > button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.card-text {
+  overflow-wrap: anywhere;
+  min-height: 2em;
+  padding-bottom: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.fa-trash {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.fa-trash:hover,
+.fa-pen-to-square:hover,
+.fa-square-check:hover {
+  color: rgb(102, 96, 96);
+}
+.todo {
+  cursor: pointer;
+}
+
+.todo-form input {
+  margin-right: 10px;
+}
+
+.todo-form {
+  display: flex;
+  margin-top: 25px;
+}
+
+.wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 350px;
+  padding: 1rem;
+  text-align: center;
+}
