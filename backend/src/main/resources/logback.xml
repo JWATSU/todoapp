@@ -17,12 +17,12 @@
         </rollingPolicy>
     </appender>
 
-    <root level="INFO">
+    <root>
         <appender-ref ref="File"/>
         <appender-ref ref="Console"/>
     </root>
 
-    <logger name="com.example.todos" level="DEBUG" additivity="false">
+    <logger name="com.example.todos" additivity="false">
         <appender-ref ref="File"/>
         <appender-ref ref="Console"/>
     </logger>

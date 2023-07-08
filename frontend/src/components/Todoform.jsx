@@ -5,7 +5,7 @@ export const Todoform = ({ addTodo }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (description) {
+    if (description.trim()) {
       addTodo(description);
       setDescription("");
     }

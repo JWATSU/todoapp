@@ -5,7 +5,7 @@ import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { Navbar } from "./components/NavbarAndFooter/Navbar";
 import { oktaConfig } from "./lib/oktaConfig";
 import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
-import { Security, LoginCallback } from "@okta/okta-react";
+import {Security, LoginCallback, SecureRoute} from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget";
 
 const oktaAuth = new OktaAuth(oktaConfig);
@@ -34,9 +34,9 @@ export const App = () => {
             <Redirect to="/home" />
           </Route>
 
-          <Route path="/home">
+          <SecureRoute path="/home">
             <TodoWrapper />
-          </Route>
+          </SecureRoute>
           <Route
             path="/login"
             render={() => <LoginWidget config={oktaConfig} />}

@@ -6,7 +6,7 @@ export const EditTodoForm = ({editDescription, todo}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (value) {
+        if (value.trim()) {
             editDescription(value, todo);
         }
     };
