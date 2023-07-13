@@ -13,7 +13,6 @@ public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column()
     private Long id;
     @NotBlank(message = "Description is required")
     private String description;
