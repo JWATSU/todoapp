@@ -21,7 +21,6 @@ public class Todo {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
     private String userEmail;
 
     public Long getId() {

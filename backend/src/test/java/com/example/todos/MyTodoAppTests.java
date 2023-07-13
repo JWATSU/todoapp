@@ -1,6 +1,7 @@
 package com.example.todos;
 
 import com.example.todos.todos.Todo;
+import com.example.todos.todos.TodoRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -14,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,6 +30,9 @@ class MyTodoAppTests {
 
     @Autowired
     private MockMvc mvc;
+
+    @Autowired
+    TodoRepository repository;
 
     @Test
     void contextLoads() {
@@ -126,6 +131,7 @@ class MyTodoAppTests {
 
         assertTrue(responseBody.contains("Todo with id 20 not found."));
     }
+
     @Test
     void shouldCreateTodo() throws Exception {
         MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/api/v1/todos/secure")
@@ -147,6 +153,29 @@ class MyTodoAppTests {
         assertEquals("adam@outlook.com", todo.getUserEmail());
         assertFalse(todo.isDone());
         assertEquals("testing!", todo.getDescription());
+
+    }
+
+    @Test
+    void shouldUpdateTodo() throws Exception {
+
+        Todo todoToUpdate = repository.findById(1L).orElseThrow();
+        LocalDateTime lastUpdatedBefore = todoToUpdate.getUpdatedAt();
+
+         mvc.perform(MockMvcRequestBuilders.put("/api/v1/todos/secure/1")
+                        .with(jwt().jwt(jwt -> jwt.subject("adam@outlook.com")))
+                        .content("""
+                                {
+                                    "description": "testing!",
+                                    "done": true
+                                }""")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        Todo updatedTodo = repository.findById(1L).orElseThrow();
+        assertEquals("testing!", updatedTodo.getDescription());
+        assertNotEquals(updatedTodo.getDescription(), todoToUpdate.getDescription());
+        assertTrue(updatedTodo.getUpdatedAt().isAfter(lastUpdatedBefore));
 
     }
 }
